@@ -2,9 +2,9 @@
 
 MeetAI is an advanced meeting assistant designed to enhance virtual collaboration. Built with Next.js and TypeScript, MeetAI integrates the power of the Gemmni API for intelligent processing, Excalidraw for interactive whiteboarding, and the Livekit SDK for real-time audio and video streaming.
 
+https://github.com/user-attachments/assets/8da6dcbd-e1ba-4311-831a-f8cb47659118
+
 ## Features
-
-
 - **Whiteboarding:**  
   Utilize Excalidraw to enable dynamic, diagramming and sketching during sessions.
 
