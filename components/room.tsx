@@ -1,6 +1,5 @@
 "use client";
-
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 import {
   LiveKitRoom,
   VideoConference,
@@ -11,28 +10,28 @@ import {
   useTracks,
 } from '@livekit/components-react';
 import '@livekit/components-styles';
-import { Track } from 'livekit-client';
+import { Track, Room as LiveKitRoomType } from 'livekit-client';
 import { AIAssistant } from './ai-assistant';
-import { ConferenceAgent } from './conference-agent';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Bot, MessageSquare, PenTool } from 'lucide-react';
 import { Whiteboard } from './whiteboard';
+import { createClient, LiveTranscriptionEvents } from '@deepgram/sdk';
 
-export function Room({ roomId, username }: { roomId: string; username: string }) {
+export function Room({ roomName, username }: { roomName: string; username: string }) {
   const [token, setToken] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [room, setRoom] = useState<any>(null);
+  
 
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/getToken?participantName=${encodeURIComponent(username)}`);
+        const response = await fetch(`http://localhost:3001/getToken?participantName=${encodeURIComponent(username)}&roomName=${roomName}`);
         const data = await response.json();
         
         if (!data.success) {
           throw new Error(data.error || 'Failed to get token');
         }
-        
+        console.log("Token:", data.token);
         setToken(data.token);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to get token');
@@ -41,7 +40,9 @@ export function Room({ roomId, username }: { roomId: string; username: string })
     };
 
     fetchToken();
-  }, [roomId, username]);
+  }, [roomName, username]);
+
+  
 
   if (error) {
     return (
@@ -72,7 +73,7 @@ export function Room({ roomId, username }: { roomId: string; username: string })
       serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL || ''}
       data-lk-theme="default"
       style={{ height: '100vh' }}
-      onConnected={() => setRoom(room)}
+      //onConnected={handleConnected}
     >
       <div className="flex h-screen">
         <div className="flex-1 flex flex-col">
@@ -80,16 +81,11 @@ export function Room({ roomId, username }: { roomId: string; username: string })
             <VideoConference />
           </div>
           <div className="p-4 bg-background border-t">
-            {/* <ControlBar /> */}
           </div>
         </div>
         <div className="w-96 border-l bg-background p-4 overflow-hidden">
           <Tabs defaultValue="agent" className="h-full">
             <TabsList>
-              {/* <TabsTrigger value="agent">
-                <Bot className="w-4 h-4 mr-2" />
-                Agent
-              </TabsTrigger> */}
               <TabsTrigger value="assistant">
                 <MessageSquare className="w-4 h-4 mr-2" />
                 Assistant
@@ -99,14 +95,11 @@ export function Room({ roomId, username }: { roomId: string; username: string })
                 Notes
               </TabsTrigger>
             </TabsList>
-            {/* <TabsContent value="agent" className="h-[calc(100vh-130px)]">
-              <ConferenceAgent room={room} />
-            </TabsContent> */}
             <TabsContent value="assistant" className="h-[calc(100vh-130px)]">
               <AIAssistant />
             </TabsContent>
             <TabsContent value="notes" className="h-[calc(100vh-130px)]">
-              <Whiteboard roomId={roomId} />
+              <Whiteboard roomId={roomName} />
             </TabsContent>
           </Tabs>
         </div>
