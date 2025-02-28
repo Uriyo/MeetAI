@@ -1,17 +1,26 @@
 # MeetAI
 
-MeetAI is an advanced meeting assistant designed to enhance virtual collaboration. Built with Next.js and TypeScript, MeetAI integrates the power of the Gemmni API for intelligent processing, Excalidraw for interactive whiteboarding, and the Livekit SDK for real-time audio and video streaming.
-
-https://github.com/user-attachments/assets/8da6dcbd-e1ba-4311-831a-f8cb47659118
+MeetAI is an advanced meeting assistant designed to enhance virtual collaboration. Built with Next.js and TypeScript, MeetAI integrates the power of the Gemini API for intelligent processing, Excalidraw for interactive whiteboarding, and the Livekit SDK for real-time audio and video streaming.
 
 ## Features
+
+- **Real-Time Video Conferencing:**  
+  Powered by Livekit SDK for seamless video and audio communication.
+
+- **AI Assistant:**  
+  Integrated AI assistant to enhance user experience with intelligent insights and automation.
+
+- **Live Transcription:**  
+  Uses Deepgram SDK for real-time transcription of conversations.
+
 - **Whiteboarding:**  
-  Utilize Excalidraw to enable dynamic, diagramming and sketching during sessions.
+  Utilize Excalidraw to enable dynamic diagramming and sketching during sessions.
+
+- **User Authentication:**  
+  Secure authentication mechanism ensuring only authorized users join meetings.
 
 - **Modern, Scalable Architecture:**  
   Developed with Next.js and TypeScript for a robust and maintainable codebase.
-- **AI Assistant:**
-  Developed AI assistant for user ease.
 
 ## Technologies Used
 
@@ -20,6 +29,7 @@ https://github.com/user-attachments/assets/8da6dcbd-e1ba-4311-831a-f8cb47659118
 - **[Gemini API](https://gemmni.com/):** AI-powered API for transcription and summarization.
 - **[Excalidraw](https://excalidraw.com/):** Tool for creating interactive, hand-drawn style diagrams.
 - **[Livekit SDK](https://livekit.io/):** SDK for real-time audio and video streaming.
+- **[Deepgram SDK](https://deepgram.com/):** AI-based speech-to-text transcription service.
 
 ## Installation
 
@@ -31,26 +41,25 @@ https://github.com/user-attachments/assets/8da6dcbd-e1ba-4311-831a-f8cb47659118
 ### Steps
 
 1. **Clone the Repository:**
-
    ```bash
    git clone https://github.com/yourusername/MeetAI.git
-
-2. **Install Dependencies:**
    ```
-    npm install
+2. **Install Dependencies:**
+   ```bash
+   npm install
    ```
 3. **Configure Environment Variables:**
-   ```
-    NEXT_PUBLIC_GEMMNI_API_KEY=your_gemmni_api_key
-    NEXT_PUBLIC_LIVEKIT_URL=your_livekit_server_url
-    NEXT_PUBLIC_LIVEKIT_API_KEY=your_livekit_api_key
-    NEXT_PUBLIC_LIVEKIT_SECRET=your_livekit_secret   
+   ```bash
+   NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+   NEXT_PUBLIC_LIVEKIT_URL=your_livekit_server_url
+   NEXT_PUBLIC_LIVEKIT_API_KEY=your_livekit_api_key
+   NEXT_PUBLIC_LIVEKIT_SECRET=your_livekit_secret
+   NEXT_PUBLIC_DEEPGRAM_API_KEY=your_deepgram_api_key
    ```
 4. **Run the Development Server:**
-   ```
-      npm run dev
+   ```bash
+   npm run dev
    ```
 5. **Access the Application:**
-
-    Open your browser and navigate to http://localhost:3000.
+   Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
 
